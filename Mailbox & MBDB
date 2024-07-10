@@ -2,7 +2,18 @@
 Proper way to delete mailbox database to migrate/save disk space
 -----------------------------------------------------------------
 
+Get-MailboxDatabaseCopyStatus
+
 Get-MoveRequest
+
+get-mailbox -Database "Mailbox Database 0901342541"
+get-mailbox -Database "Mailbox Database 0901342541" -AuditLog 
+get-mailbox -Database "Mailbox Database 0901342541" -Archive 
+get-mailbox -Database "Mailbox Database 0901342541" -Arbitration 
+get-mailbox -Database "Mailbox Database 0901342541" -PublicFolder 
+get-mailbox -Database "Mailbox Database 0901342541" -Monitoring
+
+
 Get-mailbox -Database "Mailbox Database 0901342541" | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch1
 Get-mailbox -Database "Mailbox Database 0901342541" -Archive | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch2-archive
 Get-mailbox -Database "Mailbox Database 0901342541" -Arbitration | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch3-arbitration
@@ -19,6 +30,9 @@ get-mailbox -Database "Mailbox Database 0901342541" -PublicFolder
 get-mailbox -Database "Mailbox Database 0901342541" -Monitoring
 
 
+Get-MoveRequest
+
+Get-MailboxDatabaseCopyStatus
 
 Dismount-Database "Mailbox Database 0901342541"
 Remove-MailboxDatabase "Mailbox Database 0901342541"
