@@ -1,0 +1,25 @@
+
+Proper way to delete mailbox database to migrate/save disk space
+-----------------------------------------------------------------
+
+Get-MoveRequest
+Get-mailbox -Database "Mailbox Database 0901342541" | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch1
+Get-mailbox -Database "Mailbox Database 0901342541" -Archive | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch2-archive
+Get-mailbox -Database "Mailbox Database 0901342541" -Arbitration | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch3-arbitration
+Get-mailbox -Database "Mailbox Database 0901342541" -Auditlog | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch4-auditlog
+Get-mailbox -Database "Mailbox Database 0901342541" -Publicfolder | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch5-publicfolder
+Get-mailbox -Database "Mailbox Database 0901342541" -Monitoring | New-MoveRequest -TargetDatabase mailboxdb1 -BatchName batch6-monitoring
+
+
+get-mailbox -Database "Mailbox Database 0901342541"
+get-mailbox -Database "Mailbox Database 0901342541" -AuditLog 
+get-mailbox -Database "Mailbox Database 0901342541" -Archive 
+get-mailbox -Database "Mailbox Database 0901342541" -Arbitration 
+get-mailbox -Database "Mailbox Database 0901342541" -PublicFolder 
+get-mailbox -Database "Mailbox Database 0901342541" -Monitoring
+
+
+
+Dismount-Database "Mailbox Database 0901342541"
+Remove-MailboxDatabase "Mailbox Database 0901342541"
+del /F /S /Q "C:\program Files\Microsoft\Exchange Server\V15\Mailbox\Mailbox Database 0901342541"
