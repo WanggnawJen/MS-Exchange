@@ -37,3 +37,4 @@ Get-MailboxDatabaseCopyStatus
 Dismount-Database "Mailbox Database 0901342541"
 Remove-MailboxDatabase "Mailbox Database 0901342541"
 del /F /S /Q "C:\program Files\Microsoft\Exchange Server\V15\Mailbox\Mailbox Database 0901342541"
+
